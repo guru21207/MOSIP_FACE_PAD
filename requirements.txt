@@ -2,5 +2,5 @@ torch
 torchvision
 opencv-python
 numpy
-uniface
+uniface==3.1.1
 onnxruntime
