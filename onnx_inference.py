@@ -127,7 +127,7 @@ def main() -> None:
         faces = detector.detect(frame)
 
         for face in faces:
-            result = engine.predict(frame, face["bbox"])
+            result = engine.predict(frame, face.bbox)
             draw_bbox(frame, result["bbox"], result["label"], result["score"])
 
         cv2.imshow("Anti-Spoofing", frame)
