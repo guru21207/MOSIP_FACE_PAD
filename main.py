@@ -76,7 +76,7 @@ def run_image(args, model, config, detector, device):
         raise ValueError(f"Failed to load image: {args.source}")
 
     faces = detector.detect(image)
-    faces = [f for f in faces if f["confidence"] >= args.confidence]
+    faces = [f for f in faces if f.confidence >= args.confidence]
 
     if not faces:
         print("No faces detected.")
@@ -84,7 +84,7 @@ def run_image(args, model, config, detector, device):
 
     print(f"Found {len(faces)} face(s)")
     for i, face in enumerate(faces):
-        result = predict(image, face["bbox"], model, config, device)
+        result = predict(image, face.bbox, model, config, device)
         draw_bbox(image, result["bbox"], result["label"], result["score"])
         print(f"  Face {i + 1}: {result['label']} (score={result['score']:.2f})")
 
@@ -122,9 +122,9 @@ def run_webcam(args, model, config, detector, device):
 
         faces = detector.detect(frame)
         for face in faces:
-            if face["confidence"] < args.confidence:
+            if face.confidence < args.confidence:
                 continue
-            result = predict(frame, face["bbox"], model, config, device)
+            result = predict(frame, face.bbox, model, config, device)
             draw_bbox(frame, result["bbox"], result["label"], result["score"])
 
         if writer:
