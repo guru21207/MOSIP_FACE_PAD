@@ -1,0 +1,6 @@
+torch
+torchvision
+opencv-python
+numpy
+uniface==3.1.1
+onnxruntime
